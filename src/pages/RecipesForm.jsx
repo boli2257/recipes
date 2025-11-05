@@ -38,7 +38,7 @@ export const RecipesForm = () => {
     }
   }
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'lightyellow', position: 'relative' }}>
+    <div className='form' style={{ minHeight: '100vh', backgroundColor: 'lightyellow', position: 'relative' }}>
       <h1 style={{ textAlign: 'center' }}>Új recept feltöltése</h1>
       <form onSubmit={handleSubmit}>
 

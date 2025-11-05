@@ -8,8 +8,10 @@ export const Home = () => {
   return (
     <div className='home'>
       <div className='cucc'>
-      <h1>RecipeBook</h1>
+      <div className='tarolo'>
+        <h1>RecipeBook</h1>
       <button onClick={()=>navigate("/recipes")}>Főzz, posztolj, inspirálj !</button>
+      </div>
       </div>
     </div>
   )
