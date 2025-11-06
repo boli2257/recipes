@@ -1,16 +1,31 @@
 import React from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { FaHome } from "react-icons/fa";
-import { useNavigate } from 'react-router';
-
+import { data, useNavigate, useParams } from 'react-router';
+import { readRecipes } from '../myBackend';
+import { RecipeCard } from '../components/RecipeCard';
 export const Recipes = () => {
+
+  const [recipes,setRecipes] = useState([])
+
+
 
   const navigate = useNavigate()
 
+  useEffect(()=>{
+    readRecipes(setRecipes)
+  },[])
+  console.log(recipes);
+  
   return (
     <div className='recipes' style={{minHeight:'100vh', position:'relative'}}>
-      <div style={{textAlign:'center'}}>Receptek...</div>
-      <FaHome onClick={()=>navigate("/")} style={{position:'absolute', top:'5px', left:'5px'}}/>
-      <button  onClick={()=>navigate("/addnew")} style={{position:'absolute', bottom:'5px', right:'5px'}}>Új recept hozzáadása</button>
+      <FaHome onClick={()=>navigate("/")} style={{position:'absolute', top:'5px', left:'5px', fontSize:"2.5rem"}}/>
+      <div style={{textAlign:'center'}}>
+        {recipes&& recipes.length>0 && recipes.map(obj=><RecipeCard key={obj.id} {...obj}/>)}
+      </div>
+      
+      <button  onClick={()=>navigate("/addnew")} style={{float:"right", color:"beige"}}>Új recept hozzáadása</button>
     </div>
   )
 }

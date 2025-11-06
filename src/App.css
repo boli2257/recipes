@@ -12,6 +12,11 @@ justify-content: center;
 *{
     box-sizing: border-box;
     margin: 0;
+    
+    
+}
+body{
+    background-color: #A0E8AF;
 }
 .cucc{
     display: flex;
@@ -39,17 +44,96 @@ justify-content: center;
     font-size: 1.2rem;
 }
 .recipes{
-    background-color: var(--disabled);
+    color: beige;
 }
 .recipes button{
-    padding: 30px;
+    padding: 10px;
+    font-size: 1.5rem;
     margin: 20px;
     border: none;
     background-color: var(--primary);
     border-radius: 10px;
 }
 form{
+    background-color: lightyellow;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 500px;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background-color: #FFCF56;
+    padding: 20px;
+    border-radius: 10px;
+    gap: 5px;
+}
+input, textarea{
+    border: none;
+    color: black;
+    background-color: rgba(255, 228, 147, 0.637);
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 1.1rem;
+}
+input{
+    margin-bottom: 10px;
+}
+.pluszjel{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;   
+    width: 230px;
+    font-size: 1.5rem;
+
+}
+form button{
+        background-color: var(--primary);
+        border: none;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 1.3rem;
+}
+textarea{
+    height: 200px;
+    width: 250px;
+}
+.kartya{
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    max-width: 600px;
+    max-height: 10200px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    background-color: #86BAA1;
+    padding: 20px;
+    max-height: 800px;
+
+}
+.gombok{
+    display: flex;
+    flex-direction: row;
+}
+.hozzavalok p{
+    background-color: var(--primary);
+    padding: 10px;
+    border-radius: 20px;
+}
+.hozzavalok{
+display: flex;
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.kartya img{
+    max-height: 300px;
+    object-fit: cover;
+    aspect-ratio: 1.1;
+    border-radius: 10px;
+    border: #5f5f5f 2px solid;
 }
