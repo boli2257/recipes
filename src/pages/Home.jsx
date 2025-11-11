@@ -1,12 +1,15 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
+import { MyHeader } from '../components/MyHeader'
 
 export const Home = () => {
 
   const navigate = useNavigate()
 
   return (
+    
     <div className='home'>
+      <MyHeader/>
       <div className='cucc'>
       <div className='tarolo'>
         <h1>RecipeBook</h1>

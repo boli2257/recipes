@@ -5,6 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { useNavigate, useParams } from 'react-router';
 import { addRecipe, readRecipe, updateRecipe } from '../myBackend';
 import { useEffect } from 'react';
+import { MyHeader } from '../components/MyHeader';
 
 export const RecipesForm = () => {
 
@@ -70,6 +71,7 @@ export const RecipesForm = () => {
   }
   return (
     <div className='form' style={{ minHeight: '100vh', backgroundColor: 'lightyellow', position: 'relative' }}>
+      <MyHeader/>
       <h1 style={{ textAlign: 'center' }}>Új recept feltöltése</h1>
       <form onSubmit={handleSubmit}>
 
