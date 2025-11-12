@@ -45,7 +45,7 @@ body{
 .recipes{
     color: beige;
 }
-.recipes button{
+.addnew{
     padding: 10px;
     font-size: 1.5rem;
     margin: 20px;
@@ -85,7 +85,7 @@ input{
     font-size: 1.5rem;
 
 }
-form button{
+.add{
         background-color: var(--primary);
         border: none;
         padding: 10px;
@@ -104,7 +104,7 @@ textarea{
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 40px;
+    margin-top: 70px;
     max-width: 600px;
     border-radius: 20px;
     font-size: 1.1rem;
@@ -113,8 +113,12 @@ textarea{
 
 }
 .gombok{
+    padding-top: 30px;
+    width:90%;
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 .hozzavalok p{
     background-color: var(--primary);
@@ -135,12 +139,13 @@ display: flex;
     border: #5f5f5f 2px solid;
 }
 .signin{
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
     max-width: 500px;
     align-items: center;
     justify-content: center;
-    margin: auto;
+    
 }
 .signin input{
 background-color: rgb(135, 206, 162);
@@ -160,6 +165,46 @@ background-color: rgb(135, 206, 162);
 }
 .header{
     top: 0;
-    right: 0;
-    position: sticky;
+    left: 0;
+    position: fixed;
+    z-index: 183845;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(54, 87, 69, 0.708);
+    color: white;
+    padding: 1rem;
+    width: 100%;
+}
+button{
+    cursor: pointer;
+}
+.header-right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-right: 2rem;
+}
+.header-right div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.header-right button{
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    background-color: rgb(54, 87, 69);
+    color: beige;
+}
+.header-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.signin-up-tarolo{
+    width: 100vw;
 }

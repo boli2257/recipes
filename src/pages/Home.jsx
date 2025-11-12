@@ -9,7 +9,6 @@ export const Home = () => {
   return (
     
     <div className='home'>
-      <MyHeader/>
       <div className='cucc'>
       <div className='tarolo'>
         <h1>RecipeBook</h1>

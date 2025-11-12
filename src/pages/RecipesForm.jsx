@@ -71,7 +71,6 @@ export const RecipesForm = () => {
   }
   return (
     <div className='form' style={{ minHeight: '100vh', backgroundColor: 'lightyellow', position: 'relative' }}>
-      <MyHeader/>
       <h1 style={{ textAlign: 'center' }}>Új recept feltöltése</h1>
       <form onSubmit={handleSubmit}>
 
