@@ -6,16 +6,18 @@ import { FaHome } from "react-icons/fa";
 import { useContext } from 'react';
 import { myUserContext } from '../context/MyUserProvider';
 export const MyHeader = () => {
-  const {user} = useContext(myUserContext)
+  const {user, logoutUser,} = useContext(myUserContext)
+  console.log(user);
+  
     const navigate = useNavigate()
   return (
     <div className='header'>
       <div className='header-left'>
       <FaHome onClick={()=>navigate("/")} style={{position:'absolute', top:'5px', left:'5px', fontSize:"2.5rem"}}/></div>
       {user ? 
-      <div>
-        <RxAvatar size={30}/>
-        <button>Kijelentkezés</button>
+      <div className='kijelentkezes'>
+        <RxAvatar size={30} title={user.displayName}/>
+        <button onClick={()=>logoutUser()}>Kijelentkezés</button>
       </div>  
       :
       <div className='header-right'>

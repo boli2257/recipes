@@ -208,3 +208,10 @@ button{
 .signin-up-tarolo{
     width: 100vw;
 }
+.kijelentkezes{
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
