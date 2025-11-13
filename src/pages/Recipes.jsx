@@ -8,19 +8,21 @@ import { RecipeCard } from '../components/RecipeCard';
 import { MyHeader } from '../components/MyHeader';
 export const Recipes = () => {
 
-  const [recipes,setRecipes] = useState([])
-
+  const [recipes,setRecipes] = useState(null)
+const [loading,setLoading] = useState(false)
 
 
   const navigate = useNavigate()
 
   useEffect(()=>{
-    readRecipes(setRecipes)
+    readRecipes(setRecipes,setLoading)
   },[])
   console.log(recipes);
   
   return (
     <div className='recipes' style={{minHeight:'100vh', position:'relative'}}>
+      
+      {loading && <p>loading...</p>}
       <div style={{textAlign:'center'}}>
         {recipes&& recipes.length>0 && recipes.map(obj=><RecipeCard key={obj.id} {...obj}/>)}
       </div>

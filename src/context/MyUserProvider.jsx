@@ -2,15 +2,15 @@ import React from 'react'
 import { useEffect } from 'react'
 import { createContext } from 'react'
 import { useState } from 'react'
-import { useSearchParams } from 'react-router'
-import { createUserWithEmailAndPassword, onAuthStateChanged,sendEmailVerification,signInWithEmailAndPassword,signOut, updateProfile } from 'firebase/auth'
+import { useNavigate } from 'react-router'
+import { createUserWithEmailAndPassword, onAuthStateChanged,sendEmailVerification,sendPasswordResetEmail,signInWithEmailAndPassword,signOut, updateProfile } from 'firebase/auth'
 import { auth } from "../firebaseApp"
-import { MdUnsubscribe } from 'react-icons/md'
 export const myUserContext = createContext()
 
 export const MyUserProvider = ({children}) => {
   const [msg,setMsg]  = useState({})
   const [user,setUser] = useState(null)
+  const navigate = useNavigate()
   useEffect(()=>{
     onAuthStateChanged(auth,(currentuser)=>{
       setUser(currentuser)
@@ -28,7 +28,6 @@ export const MyUserProvider = ({children}) => {
       
       console.log("Sikeres regisztráció!");
       setMsg({signUp:"Kattints az emailben kaptt aktiváló linkre"})
-      setMsg(prev=>delete prev.err)
       logoutUser()
     } catch (e) {
       console.log("Bejelentkezési hiba: " + e);
@@ -38,27 +37,41 @@ export const MyUserProvider = ({children}) => {
   }
     const logoutUser = async ()=>{
       await signOut(auth)
-      setMsg(prev=>delete prev.signIn)
     }
     const signInUser = async(email,password)=>{
       try {
           await signInWithEmailAndPassword(auth,email,password)
           const currentUser = auth.currentUser
           if(!currentUser.emailVerified){
-            setMsg(prev=>prev.signIn)
+            setMsg({err:"Kattints az mailben kapott aktiváló linkre!"})
             logoutUser()
             return
           }
-          setMsg(prev=>delete prev.err)
+
           setMsg({signIn:true})
       } catch (error) {
         console.log(error);
         setMsg({err:error.message})
       }
     }
+    //új jelszó
+    const resetPassword = async(email)=>{
+      let success = false
+      try {
+        await sendPasswordResetEmail(auth,email)
+        setMsg({resetPw:"A jelszó visszaállítási email elküldve!"})
+      } catch (error) {
+        setMsg({err:error.message})
+        
+      }finally{
+        if(success){
+          navigate("/")
+        }
+      }
+    }
 
   return (
-    <myUserContext.Provider value={{user, signUpUser, logoutUser,signInUser,msg}}>
+    <myUserContext.Provider value={{user, signUpUser, logoutUser,signInUser,msg,setMsg,resetPassword}}>
       {children}
     </myUserContext.Provider>
   )

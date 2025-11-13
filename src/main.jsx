@@ -6,10 +6,9 @@ import { BrowserRouter } from 'react-router'
 import { MyUserProvider } from './context/MyUserProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <MyUserProvider>
   <BrowserRouter>
-    <App />
+    <MyUserProvider>
+      <App />
+    </MyUserProvider>
   </BrowserRouter>
-  </MyUserProvider>
-    
 )

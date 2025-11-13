@@ -215,3 +215,17 @@ button{
     justify-content: center;
     gap: 1rem;
 }
+.kijgomb{
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(54, 87, 69);
+    color: beige;
+}
+.avatar{
+    color: beige;
+
+}
+button:disabled{
+    cursor: not-allowed;
+}

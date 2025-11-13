@@ -16,8 +16,8 @@ export const MyHeader = () => {
       <FaHome onClick={()=>navigate("/")} style={{position:'absolute', top:'5px', left:'5px', fontSize:"2.5rem"}}/></div>
       {user ? 
       <div className='kijelentkezes'>
-        <RxAvatar size={30} title={user.displayName}/>
-        <button onClick={()=>logoutUser()}>Kijelentkezés</button>
+        <RxAvatar className='avatar'size={35} title={user.displayName}/>
+        <button className='kijgomb' onClick={()=>logoutUser()}>Kijelentkezés</button>
       </div>  
       :
       <div className='header-right'>
