@@ -15,7 +15,9 @@ console.log(id);
         {ingredients.map(obj =><p>{obj}</p>)}
         </div>
       <img src={imgUrl} alt={name}/> 
+      <div className='lepesek'>
       {steps}
+      </div>
       <div className='gombok'>
       <IoTrashOutline size={30} onClick={()=>deleteRecipe(id, deleteUrl)}/>
         <MdEdit size={30} onClick={()=>navigate("/edit/"+id)}/>

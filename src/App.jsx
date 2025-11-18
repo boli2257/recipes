@@ -7,11 +7,15 @@ import { SingIn } from './components/SingIn'
 import { SignUp } from './components/SignUp'
 import { MyHeader } from './components/MyHeader'
 import { PwReset } from './components/PwReset'
+import { ToastContainer } from 'react-toastify'
+import { MyToastify } from './components/MyToastify'
 
 function App() {
 
   return (
     <div className='container'><MyHeader/>
+    <MyToastify/>
+    <ToastContainer/>
     <Routes>
       
       <Route path="/" element={<Home />} />

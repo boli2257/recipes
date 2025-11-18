@@ -6,12 +6,13 @@ import { data, useNavigate, useParams } from 'react-router';
 import { readRecipes } from '../myBackend';
 import { RecipeCard } from '../components/RecipeCard';
 import { MyHeader } from '../components/MyHeader';
+import { useContext } from 'react';
+import { myUserContext } from '../context/MyUserProvider';
 export const Recipes = () => {
 
   const [recipes,setRecipes] = useState(null)
-const [loading,setLoading] = useState(false)
-
-
+  const [loading,setLoading] = useState(false)
+  const {user} = useContext(myUserContext)
   const navigate = useNavigate()
 
   useEffect(()=>{
@@ -27,7 +28,7 @@ const [loading,setLoading] = useState(false)
         {recipes&& recipes.length>0 && recipes.map(obj=><RecipeCard key={obj.id} {...obj}/>)}
       </div>
       
-      <button className='addnew'  onClick={()=>navigate("/addnew")} style={{float:"right", color:"beige"}}>Új recept hozzáadása</button>
+      <button disabled={!user} className='addnew'  onClick={()=>navigate("/addnew")} style={{float:"right", color:"beige"}}>Új recept hozzáadása</button>
     </div>
   )
 }

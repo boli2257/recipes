@@ -6,9 +6,12 @@ import { useNavigate, useParams } from 'react-router';
 import { addRecipe, readRecipe, updateRecipe } from '../myBackend';
 import { useEffect } from 'react';
 import { MyHeader } from '../components/MyHeader';
+import { useContext } from 'react';
+import { myUserContext } from '../context/MyUserProvider';
 
 export const RecipesForm = () => {
 
+  const {user} = useContext(myUserContext)
   const [name, setName] = useState("")
   const [ingredients, setIngredients] = useState([""])
   const [steps, setSteps] = useState("")
@@ -41,7 +44,7 @@ export const RecipesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    let inputData = { name, ingredients, steps, category }
+    let inputData = { name, ingredients, steps, category, uid:user.uid,displayName:user.displayName}
     console.log(inputData);
     if (id) {
       //update 
@@ -92,7 +95,7 @@ export const RecipesForm = () => {
         <button type='submit' disabled={loading || (!file&&!preview)}>Mentés</button>
       </form>
       {loading && <div>Loading...</div>}
-      <IoMdClose onClick={() => navigate("/recipes")} style={{ position: 'absolute', top: '5px', left: '5px', fontSize:"2.5rem" }} />
+      <IoMdClose onClick={() => navigate("/recipes")} style={{ position: 'absolute', top: '90px', left: '5px', fontSize:"2.5rem" }} />
     </div>
   )
 }

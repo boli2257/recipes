@@ -33,7 +33,7 @@ export const SingIn = () => {
       </form>
       <div><a href='' onClick={()=>navigate("/pwreset")}>Elfelejtett jelszó</a></div>
       {msg && msg?.err && <p style={{color:"red"}}>{msg.err}</p>}
-      {msg && <MyToastify {...msg}/>}
+      
     </div>
   )
 }

@@ -21,7 +21,6 @@ export const PwReset = () => {
             <button className='gomb'><b>Küldd az emailt!</b></button>
           </div>
           </form>
-          {msg && <MyToastify {...msg}/>}
         </div>
   )
 }

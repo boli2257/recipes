@@ -35,7 +35,6 @@ export const SignUp = () => {
         <button className='gomb' disabled={loading}><b>{loading? "Regisztráció folyamatban" :"Regisztráció"}</b></button>
       </div>
       </form>
-      {msg && <MyToastify {...msg}/>}
     </div>
   )
 }
