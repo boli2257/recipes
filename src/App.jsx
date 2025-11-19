@@ -9,6 +9,7 @@ import { MyHeader } from './components/MyHeader'
 import { PwReset } from './components/PwReset'
 import { ToastContainer } from 'react-toastify'
 import { MyToastify } from './components/MyToastify'
+import { UserProfile } from './pages/UserProfile'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       <Route path="/recipes" element={<Recipes />} />
       <Route path="/addnew" element={<RecipesForm />} />
       <Route path="/edit/:id" element={<RecipesForm />} />
+      <Route path="/profile" element={<UserProfile />} />
     </Routes>
     </div>
   )
