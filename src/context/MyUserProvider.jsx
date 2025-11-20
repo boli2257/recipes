@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { createUserWithEmailAndPassword, onAuthStateChanged,sendEmailVerification,sendPasswordResetEmail,signInWithEmailAndPassword,signOut, updateProfile } from 'firebase/auth'
 import { auth } from "../firebaseApp"
+import { uploadImage } from '../cloudinaryUtils'
 export const myUserContext = createContext()
 
 export const MyUserProvider = ({children}) => {
@@ -70,8 +71,24 @@ export const MyUserProvider = ({children}) => {
       }
     }
 
+    //avatár csere
+    const avatarUpdate= async(file)=>{
+      try {
+        const uploadResult = await uploadImage(file)
+        console.log(uploadResult);
+        if(uploadResult?.url) await updateProfile(auth.currentUser,{photoURL:uploadResult.url})
+        setUser({...auth.currentUser})
+      setMsg(null)
+      setMsg({updateProfile:"Sikeres profil módosítás!"})
+
+
+      } catch (error) {
+        setMsg({error:error.message})
+      }
+    }
+
   return (
-    <myUserContext.Provider value={{user, signUpUser, logoutUser,signInUser,msg,setMsg,resetPassword}}>
+    <myUserContext.Provider value={{user, signUpUser, logoutUser,signInUser,msg,setMsg,resetPassword, avatarUpdate}}>
       {children}
     </myUserContext.Provider>
   )

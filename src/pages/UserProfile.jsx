@@ -2,13 +2,17 @@ import React from 'react'
 import { useContext } from 'react'
 import { myUserContext } from '../context/MyUserProvider'
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
+import { useEffect } from 'react'
 
 export const UserProfile = () => {
-    const { user } = useContext(myUserContext)
+    const { user, avatarUpdate } = useContext(myUserContext)
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const [loading, setLoading] = useState(false)
-
+    const navigate = useNavigate('/')
+    
+    
     const handleFileChange = (e) => {
         const selected = e.target.files[0]
         setFile(selected)
@@ -16,18 +20,28 @@ export const UserProfile = () => {
         setPreview(URL.createObjectURL(selected))
         }
     }
-    const handleSubmit=(e)=>{
+    const handleSubmit=async (e)=>{
         e.preventDefault()
+        setLoading(true)
+        if(!file) return
+        try {
+            await avatarUpdate(file)
+        } catch (error) {
+            console.log("Upload failed: "+ error);
+            
+        }finally{
+            setLoading(false)
+        }
     }
     return (
         <div className='profileform'>
             <h2>Profil módosítás</h2>
             <div>
-                <h4>Felhasználónév: {user.displayName}</h4>
-                <p>Email: {user.email}</p>
+                <h4>Felhasználónév: {user?.displayName}</h4>
+                <p>Email: {user?.email}</p>
                 {user?.photoURL && (<img style={{width:"50px", height:"50px",borderRadius:"50%", objectFit:"cover"}} src={user.photoURL} alt="Profilkép" />)}
             </div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>Új profilkép:</label>
                 <input type="file" accept='image/*' onChange={handleFileChange} className='filevalszto' />
                 <button type='submit' disabled={loading}>{loading? "Mentés..." : "Profil frissítése!"}</button>

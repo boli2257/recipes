@@ -81,3 +81,5 @@ export const updateRecipe = async (id, updatedData, file) => {
 
     }
 }
+//profile update:
+export const profileUpdate=async(file)=>{}
