@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
 
 export const UserProfile = () => {
-    const { user, avatarUpdate } = useContext(myUserContext)
+    const { user, avatarUpdate, deleteAccount } = useContext(myUserContext)
     const [file, setFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -33,6 +33,12 @@ export const UserProfile = () => {
             setLoading(false)
         }
     }
+    const handleDelete=async(e)=>{
+        if(window.confirm("Biztosan szeretné törölni?")){
+            const pw=prompt("Add meg a jelszavad a törléshez!")
+            await deleteAccount(pw)
+        }
+    }
     return (
         <div className='profileform'>
             <h2>Profil módosítás</h2>
@@ -48,6 +54,7 @@ export const UserProfile = () => {
                 
             </form>
             {preview && (<img src={preview} alt='előnézet' style={{ width:"50px", height:"50px",borderRadius:"50%", objectFit: "cover" }} />)}
+            <button onClick={handleDelete} style={{position:"fixed",bottom:"5px",right:"5px", backgroundColor:"red"}}>Fiók törlése</button>
         </div>
     )
 }

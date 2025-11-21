@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import { FaMinus, FaPlus } from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
 import { useNavigate, useParams } from 'react-router';
 import { addRecipe, readRecipe, updateRecipe } from '../myBackend';
@@ -44,7 +44,7 @@ export const RecipesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    let inputData = { name, ingredients, steps, category, uid:user.uid,displayName:user.displayName}
+    let inputData = { name, ingredients, steps, category, uid:user.uid,displayName:user.displayName,userPhoto:user.photoURL}
     console.log(inputData);
     if (id) {
       //update 
@@ -72,6 +72,11 @@ export const RecipesForm = () => {
       setPreview(URL.createObjectURL(selected))
     }
   }
+  const removeIngredients=(index)=>{
+    const newArr = ingredients.filter((item,idx)=>index!=idx)
+    setIngredients([...newArr])
+  }
+
   return (
     <div className='form' style={{ minHeight: '100vh', backgroundColor: 'lightyellow', position: 'relative' }}>
       <h1 style={{ textAlign: 'center' }}>Új recept feltöltése</h1>
@@ -81,10 +86,13 @@ export const RecipesForm = () => {
         <div>
           {ingredients.map((item, index) =>
             <div key={index}>
+              <FaMinus onClick={()=>  removeIngredients(index)}/>
               <input type="text" value={item} onChange={(e) => handleChangeIngredients(index, e.target.value)} placeholder={`${index + 1} hozzávaló: `} />
+              <FaPlus  onClick={() => setIngredients([...ingredients, ""])} />
+
             </div>
           )}
-          <div className='pluszjel'>
+          <div className='pluszjel'>  
             <FaPlus  onClick={() => setIngredients([...ingredients, ""])} />
           </div>
         </div>

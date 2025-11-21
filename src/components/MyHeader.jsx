@@ -6,7 +6,7 @@ import { FaHome } from "react-icons/fa";
 import { useContext } from 'react';
 import { myUserContext } from '../context/MyUserProvider';
 export const MyHeader = () => {
-  const { user, logoutUser, } = useContext(myUserContext)
+  const { user, logoutUser } = useContext(myUserContext)
   console.log(user);
 
   const navigate = useNavigate()

@@ -18,6 +18,8 @@ export const uploadImage=async(file)=>{
         const base64 = await convertToBase64(compressed)
         const resp = await axios.post(API_URL+"uploadImage",{image:base64})
         return resp.data//url, public_id
+        
+        
     } catch (error) {
         console.log("Image Update failed"+error);
         return null

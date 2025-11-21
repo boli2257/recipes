@@ -3,9 +3,11 @@ import { useEffect } from 'react'
 import { createContext } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { createUserWithEmailAndPassword, onAuthStateChanged,sendEmailVerification,sendPasswordResetEmail,signInWithEmailAndPassword,signOut, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, deleteUser, onAuthStateChanged,reauthenticateWithCredential,sendEmailVerification,sendPasswordResetEmail,signInWithEmailAndPassword,signOut, updateProfile } from 'firebase/auth'
 import { auth } from "../firebaseApp"
 import { uploadImage } from '../cloudinaryUtils'
+import { SingIn } from '../components/SingIn'
+import { EmailAuthProvider } from 'firebase/auth/web-extension'
 export const myUserContext = createContext()
 
 export const MyUserProvider = ({children}) => {
@@ -38,6 +40,7 @@ export const MyUserProvider = ({children}) => {
   }
     const logoutUser = async ()=>{
       await signOut(auth)
+      setMsg({signIn:false})
     }
     const signInUser = async(email,password)=>{
       try {
@@ -86,9 +89,23 @@ export const MyUserProvider = ({children}) => {
         setMsg({error:error.message})
       }
     }
-
+    const deleteAccount = async(password)=>{
+      try {
+            const credential = EmailAuthProvider.credential(auth.currentUser.email,password)
+            await reauthenticateWithCredential(auth.currentUser,credential)
+            await deleteUser(auth.currentUser)
+            setMsg(null)
+            setMsg({serverMsg:"Felhasználói fiók törölve!"})
+            
+      } catch (error) {
+        console.log(error);
+        if(error.code=="auth/wrong-password") setMsg({err:"Hibás jelszó!"})
+        else setMsg({err:"Hiba történt a profil törlésekor!"})
+      }
+      
+    }
   return (
-    <myUserContext.Provider value={{user, signUpUser, logoutUser,signInUser,msg,setMsg,resetPassword, avatarUpdate}}>
+    <myUserContext.Provider value={{user, signUpUser, logoutUser,signInUser,msg,setMsg,resetPassword, avatarUpdate,deleteAccount}}>
       {children}
     </myUserContext.Provider>
   )

@@ -12,6 +12,8 @@ import { MyToastify } from './components/MyToastify'
 import { UserProfile } from './pages/UserProfile'
 import { useContext } from 'react'
 import { myUserContext } from './context/MyUserProvider'
+import { NotFound } from './components/NotFound'
+import { Protectedroute } from './Protectedroute'
 
 function App() {
   const {user} = useContext(myUserContext)
@@ -26,10 +28,10 @@ function App() {
       <Route path='/pwreset' element={<PwReset/>}/>
       <Route path='/signup' element={<SignUp />}/>
       <Route path="/recipes" element={<Recipes />} />
-      <Route path="/addnew" element={<RecipesForm />} />
-      <Route path="/edit/:id" element={<RecipesForm />} />
-      <Route path="/profile" element={user? <UserProfile/> : <Home/>} />
-      
+      <Route path="/addnew" element={<Protectedroute><RecipesForm /></Protectedroute>} />
+      <Route path="/edit/:id" element={<Protectedroute><RecipesForm /></Protectedroute>} />
+      <Route path="/profile" element={<Protectedroute><UserProfile/></Protectedroute>} />
+      <Route path='/*' element={<NotFound/>}/>
     </Routes>
     </div>
   )

@@ -5,15 +5,16 @@ import { deleteRecipe } from '../myBackend';
 import { useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { myUserContext } from '../context/MyUserProvider';
-export const RecipeCard = ({ id, name, steps, ingredients, imgUrl, deleteUrl, uid, displayName }) => {
+export const RecipeCard = ({ id, name, steps, ingredients, imgUrl, deleteUrl, uid, displayName,userPhoto}) => {
 
   const navigate = useNavigate()
   const { user } = useContext(myUserContext)
-  console.log(id);
+  console.log(id,displayName,uid);
 
   return (
     <div className='kartya'>
       <h1>{name}</h1>
+      
       <div className='hozzavalok'>
         {ingredients.map(obj => <p>{obj}</p>)}
       </div>
@@ -24,6 +25,7 @@ export const RecipeCard = ({ id, name, steps, ingredients, imgUrl, deleteUrl, ui
       {user && user.uid == uid &&
           <div className='gombok'>
             <IoTrashOutline size={30} onClick={() => deleteRecipe(id, deleteUrl)} />
+              <p>Uploaded by: {displayName}{userPhoto && <img src={userPhoto} alt="" style={{height:60,width:60, borderRadius:"50%"}}/>}</p>
             <MdEdit size={30} onClick={() => navigate("/edit/" + id)} />
         </div>
         }

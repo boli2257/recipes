@@ -13,7 +13,7 @@ export const MyToastify = () => {
     
     const navigate =useNavigate()
     useEffect(()=>{
-        if(msg.err){
+        if(msg?.err){
             toast.error(msg.err,{position:"bottom-center"})
             setMsg({})
         }else if(msg.signUp){
@@ -23,6 +23,9 @@ export const MyToastify = () => {
                 setMsg({})
             },5000)
         }else if(msg.resetPw){
+            toast.success(msg.resetPw,{position:"bottom-center"})
+            setMsg(null)
+        }else if(msg?.serverMsg){
             toast.success(msg.resetPw,{position:"bottom-center"})
             setMsg(null)
         }
