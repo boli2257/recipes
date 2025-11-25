@@ -8,6 +8,7 @@ import { auth } from "../firebaseApp"
 import { uploadImage } from '../cloudinaryUtils'
 import { SingIn } from '../components/SingIn'
 import { EmailAuthProvider } from 'firebase/auth/web-extension'
+import { updateAvatar } from '../myBackend'
 export const myUserContext = createContext()
 
 export const MyUserProvider = ({children}) => {
@@ -80,7 +81,9 @@ export const MyUserProvider = ({children}) => {
         const uploadResult = await uploadImage(file)
         console.log(uploadResult);
         if(uploadResult?.url) await updateProfile(auth.currentUser,{photoURL:uploadResult.url})
-        setUser({...auth.currentUser})
+          //el kell tárolni a public_id-t: 
+          await updateAvatar(user.uid,uploadResult.public_id)
+          setUser({...auth.currentUser})
       setMsg(null)
       setMsg({updateProfile:"Sikeres profil módosítás!"})
 

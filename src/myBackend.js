@@ -1,7 +1,8 @@
 import axios from "axios";
-import { addDoc, collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, serverTimestamp, Timestamp, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query, serverTimestamp, setDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { db } from "./firebaseApp"
 import imageCompression from "browser-image-compression";
+import { deleteImg } from "./cloudinaryUtils";
 const apiKey = import.meta.env.VITE_IMGBB_API_KEY;
 const imgbburl = `https://api.imgbb.com/1/upload?key=${apiKey}`
 console.log(imgbburl);
@@ -82,4 +83,21 @@ export const updateRecipe = async (id, updatedData, file) => {
     }
 }
 //profile update:
-export const profileUpdate=async(file)=>{}
+export const updateAvatar=async(uid, public_id)=>{
+    let oldPublicId = null
+    try {
+        
+        const docRef = doc(db,'avatars',uid)//egy dokumentum referencia
+        const docSnap = await getDoc(docRef)
+        if(!docSnap.exists()){
+            await setDoc(docRef,{uid,public_id})
+        }else{
+            oldPublicId=docSnap.data().public_id
+            await updateDoc(docRef,{public_id})
+        }
+        if(oldPublicId)await deleteImg(oldPublicId)
+    } catch (error) {
+        console.log("Avatar törlési hiba!");
+        
+    }
+}
