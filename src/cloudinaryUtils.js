@@ -1,8 +1,8 @@
 import axios from "axios"
 import imageCompression from "browser-image-compression"
 
-const API_URL ="http://localhost:5050/api/"
-//const API_URL = "https://recipe-backend-brown.vercel.app/api/"
+//const API_URL ="http://localhost:5050/api/"
+const API_URL = "https://recipe-backend-brown.vercel.app/api/"
 const convertToBase64=(file)=>{
     return new Promise((resolve, reject)=>{
         const reader = new FileReader()

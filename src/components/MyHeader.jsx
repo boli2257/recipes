@@ -13,7 +13,7 @@ export const MyHeader = () => {
   return (
     <div className='header'>
       <div className='header-left'>
-        <FaHome onClick={() => navigate("/")} style={{ position: 'absolute', top: '5px', left: '5px', fontSize: "2.5rem" }} /></div>
+        <FaHome onClick={() => navigate("/")} style={{ position: 'absolute', top: '5px', left: '5px', fontSize: "2.5rem" }} className='homeicon'/></div>
       {user ?
         <div className='kijelentkezes'>
           <span onClick={()=>navigate("/profile")}>

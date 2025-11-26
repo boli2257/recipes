@@ -54,6 +54,11 @@ body{
     background-color: var(--primary);
     border-radius: 10px;
 }
+.addnew:hover{
+    scale: 1.05;
+    transition: 0.4s;
+    background-color: rgb(50, 136, 89);
+}
 form{
     background-color: lightyellow;
     display: flex;
@@ -238,9 +243,32 @@ button{
     background-color: rgb(54, 87, 69);
     color: beige;
 }
-.avatar{
-    color: beige;
+.kijgomb:hover{
+    scale: 1.05;
+    transition: 0.4s;
+    background-color: rgb(50, 136, 89);
+}
 
+.homeSzlogen:hover{
+    scale: 1.05;
+    transition: 0.5s;
+    background-color: rgb(50, 136, 89);
+}
+.kijelentkezes span{
+    color: beige;
+    display: inline-block;
+
+}
+.kijelentkezes span:hover {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
 }
 button:disabled{
     cursor: not-allowed;
@@ -256,4 +284,38 @@ button:disabled{
     align-items: center;
     justify-content: center;
     height: 90vh;
+}
+.homeicon{
+    margin-top: 18px;
+}
+.kartya:hover{
+    scale: 1.05;
+    transition: 1s;
+    box-shadow: rgba(166, 255, 196, 0.3) 0px 8px 24px, rgba(166, 255, 196, 0.3) 0px 16px 56px, rgba(166, 255, 196, 0.3) 0px 24px 80px;
+}
+.deleteButton{
+    background-color: orangered;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    color: beige;
+}   
+.deleteButton:hover{
+    scale: 1.1;
+    color: beige;
+    transition: 0.4s;
+    background-color: red;
+}
+.saveButton{
+    color: beige;
+    background-color: rgb(54, 87, 69);    
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+.saveButton:hover{
+    scale: 1.05;
+    transition: 0.4s;
+    background-color: rgb(50, 136, 89);
 }

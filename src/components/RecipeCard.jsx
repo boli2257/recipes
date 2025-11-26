@@ -12,7 +12,7 @@ export const RecipeCard = ({ id, name, steps, ingredients, imgUrl, deleteUrl, ui
   console.log(id,displayName,uid);
 
   return (
-    <div className='kartya'>
+    <div className='kartya hover-underline'>
       <h1>{name}</h1>
       
       <div className='hozzavalok'>

@@ -12,7 +12,7 @@ export const Home = () => {
       <div className='cucc'>
       <div className='tarolo'>
         <h1>RecipeBook</h1>
-      <button onClick={()=>navigate("/recipes")}>Főzz, posztolj, inspirálj !</button>
+      <button className="homeSzlogen" onClick={()=>navigate("/recipes")}>Főzz, posztolj, inspirálj !</button>
       </div>
       </div>
     </div>

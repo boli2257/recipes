@@ -44,19 +44,19 @@ export const UserProfile = () => {
     return (
         <div className='profileform'>
             <h2>Profil módosítás</h2>
-            <div>
+            <div style={{display:"flex",flexDirection:"column", alignItems:"center", fontSize:"1.3rem",gap:"4px"}}>
                 <h4>Felhasználónév: {user?.displayName}</h4>
                 <p>Email: {user?.email}</p>
-                {user?.photoURL && (<img style={{width:"50px", height:"50px",borderRadius:"50%", objectFit:"cover"}} src={user.photoURL} alt="Profilkép" />)}
+                {user?.photoURL && (<img style={{width:"70px", height:"70px",borderRadius:"50%", objectFit:"cover", marginBottom:"10px"}} src={user.photoURL} alt="Profilkép"/>)}
             </div>
-            <form onSubmit={handleSubmit}>
+            <form className='newPFP' onSubmit={handleSubmit}>
                 <label>Új profilkép:</label>
-                <input type="file" accept='image/*' onChange={handleFileChange} className='filevalszto' />
-                <button type='submit' disabled={loading}>{loading? "Mentés..." : "Profil frissítése!"}</button>
-                
+                <input className="filevalszto" type="file" accept='image/*' onChange={handleFileChange} />
+                <button className='saveButton' type='submit' disabled={loading}>{loading? "Mentés..." : "Profil frissítése!"}</button>
+                {preview && (<img src={preview} alt='előnézet' style={{ width:"50px", height:"50px",borderRadius:"50%", objectFit: "cover" }} />)}
             </form>
-            {preview && (<img src={preview} alt='előnézet' style={{ width:"50px", height:"50px",borderRadius:"50%", objectFit: "cover" }} />)}
-            <button onClick={handleDelete} style={{position:"fixed",bottom:"5px",right:"5px", backgroundColor:"red"}}>Fiók törlése</button>
+            
+            <button className='deleteButton' onClick={handleDelete} style={{position:"fixed",bottom:"10Px",right:"10px",}}>Fiók törlése</button>
         </div>
     )
 }

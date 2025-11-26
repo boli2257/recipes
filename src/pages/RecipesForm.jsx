@@ -80,7 +80,7 @@ export const RecipesForm = () => {
   return (
     <div className='form' style={{ minHeight: '100vh', backgroundColor: 'lightyellow', position: 'relative' }}>
       <h1 style={{ textAlign: 'center' }}>Új recept feltöltése</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
 
         <input type="text" placeholder='Receptneve:' value={name} onChange={(e) => setName(e.target.value)} required />
         <div>
