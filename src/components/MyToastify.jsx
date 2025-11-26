@@ -14,19 +14,19 @@ export const MyToastify = () => {
     const navigate =useNavigate()
     useEffect(()=>{
         if(msg?.err){
-            toast.error(msg.err,{position:"bottom-center"})
+            toast.error(msg?.err,{position:"bottom-center"})
             setMsg({})
-        }else if(msg.signUp){
-            toast.success(msg.signUp,{position:"bottom-center"})
+        }else if(msg?.signUp){
+            toast.success(msg?.signUp,{position:"bottom-center"})
             setTimeout(()=>{
                 navigate("/signin")
                 setMsg({})
             },5000)
-        }else if(msg.resetPw){
-            toast.success(msg.resetPw,{position:"bottom-center"})
+        }else if(msg?.resetPw){
+            toast.success(msg?.resetPw,{position:"bottom-center"})
             setMsg(null)
         }else if(msg?.serverMsg){
-            toast.success(msg.resetPw,{position:"bottom-center"})
+            toast.success(msg?.resetPw,{position:"bottom-center"})
             setMsg(null)
         }
     },[msg])

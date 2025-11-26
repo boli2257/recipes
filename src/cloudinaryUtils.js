@@ -26,12 +26,11 @@ export const uploadImage=async(file)=>{
     }
 }
 export const deleteImg = async(public_id)=>{
-    console.log(public_id);
+    console.log("Cloudinary js"+public_id);
     try {
         const resp = await axios.post(API_URL+"deleteImage", {public_id})
         console.log(resp.data);
         return resp.data
-        
     } catch (error) {
         console.log("Fotó törlése nem sikerült a cloudinaryról: " + error);
         

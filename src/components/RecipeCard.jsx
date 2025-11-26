@@ -25,7 +25,7 @@ export const RecipeCard = ({ id, name, steps, ingredients, imgUrl, deleteUrl, ui
       {user && user.uid == uid &&
           <div className='gombok'>
             <IoTrashOutline size={30} onClick={() => deleteRecipe(id, deleteUrl)} />
-              <p>Uploaded by: {displayName}{userPhoto && <img src={userPhoto} alt="" style={{height:60,width:60, borderRadius:"50%"}}/>}</p>
+              <p>Uploaded by: {displayName}{/*{userPhoto && <img src={userPhoto} alt="" style={{height:60,width:60, borderRadius:"50%"}}/>}*/}</p>
             <MdEdit size={30} onClick={() => navigate("/edit/" + id)} />
         </div>
         }

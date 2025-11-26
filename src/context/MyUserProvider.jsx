@@ -102,6 +102,7 @@ export const MyUserProvider = ({children}) => {
             
       } catch (error) {
         console.log(error);
+        setMsg({err:error})
         if(error.code=="auth/wrong-password") setMsg({err:"Hibás jelszó!"})
         else setMsg({err:"Hiba történt a profil törlésekor!"})
       }

@@ -3,6 +3,7 @@ import { addDoc, collection, deleteDoc, doc, getDoc, onSnapshot, orderBy, query,
 import { db } from "./firebaseApp"
 import imageCompression from "browser-image-compression";
 import { deleteImg } from "./cloudinaryUtils";
+
 const apiKey = import.meta.env.VITE_IMGBB_API_KEY;
 const imgbburl = `https://api.imgbb.com/1/upload?key=${apiKey}`
 console.log(imgbburl);
@@ -98,6 +99,25 @@ export const updateAvatar=async(uid, public_id)=>{
         if(oldPublicId)await deleteImg(oldPublicId)
     } catch (error) {
         console.log("Avatar törlési hiba!");
+        
+    }
+}
+export const deleteAvatar=async(uid)=>{
+    console.log(uid+"mybackend");
+    let publicId = null
+    try {
+        const docRef = doc (db, 'avatar', uid)
+        const docSnap = await getDoc(docRef)
+        //ha nincs ilyen dokumnetum nincs teedő
+        if(!docSnap.exists()) return
+        else{
+            publicId = docSnap.data().public_id
+              console.log("Képtörlés előtt" +publicId);
+            await deleteImg(publicId)//cloudinaryról töröl
+            await deleteDoc(docRef)//firestore:avatars-ból törlés
+        }
+    } catch (error) {
+        console.log("Avatar törlési hiba");
         
     }
 }
