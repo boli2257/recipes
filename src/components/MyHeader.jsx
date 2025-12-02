@@ -1,5 +1,4 @@
 import React from 'react'
-import { TbLogin2 } from "react-icons/tb";
 import { useNavigate } from 'react-router';
 import { RxAvatar } from "react-icons/rx";
 import { FaHome } from "react-icons/fa";

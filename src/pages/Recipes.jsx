@@ -1,11 +1,9 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { FaHome } from "react-icons/fa";
 import { data, useNavigate, useParams } from 'react-router';
 import { readRecipes } from '../myBackend';
 import { RecipeCard } from '../components/RecipeCard';
-import { MyHeader } from '../components/MyHeader';
 import { useContext } from 'react';
 import { myUserContext } from '../context/MyUserProvider';
 export const Recipes = () => {

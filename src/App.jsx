@@ -16,23 +16,24 @@ import { NotFound } from './components/NotFound'
 import { Protectedroute } from './Protectedroute'
 
 function App() {
-  const {user} = useContext(myUserContext)
+  const { user } = useContext(myUserContext)
   return (
-    <div className='container'><MyHeader/>
-    <MyToastify/>
-    <ToastContainer/>
-    <Routes>  
-      
-      <Route path="/" element={<Home />} />
-      <Route path='/signin' element={<SingIn />}/>
-      <Route path='/pwreset' element={<PwReset/>}/>
-      <Route path='/signup' element={<SignUp />}/>
-      <Route path="/recipes" element={<Recipes />} />
-      <Route path="/addnew" element={<Protectedroute><RecipesForm /></Protectedroute>} />
-      <Route path="/edit/:id" element={<Protectedroute><RecipesForm /></Protectedroute>} />
-      <Route path="/profile" element={<Protectedroute><UserProfile/></Protectedroute>} />
-      <Route path='/*' element={<NotFound/>}/>
-    </Routes>
+    <div className='container'>
+      <MyHeader />
+      <MyToastify />
+      <ToastContainer />
+      <Routes>
+
+        <Route path="/" element={<Home />} />
+        <Route path='/signin' element={<SingIn />} />
+        <Route path='/pwreset' element={<PwReset />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/addnew" element={<Protectedroute><RecipesForm /></Protectedroute>} />
+        <Route path="/edit/:id" element={<Protectedroute><RecipesForm /></Protectedroute>} />
+        <Route path="/profile" element={<Protectedroute><UserProfile /></Protectedroute>} />
+        <Route path='/*' element={<NotFound />} />
+      </Routes>
     </div>
   )
 }
